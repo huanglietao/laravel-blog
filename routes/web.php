@@ -11,6 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'BlogController@index');
+
+// 联系表单
+Route::get('contact', 'BlogController@showForm');
+Route::post('contact', 'BlogController@sendContactInfo');
