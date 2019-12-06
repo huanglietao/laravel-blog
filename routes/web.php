@@ -14,5 +14,4 @@
 Route::get('/', 'BlogController@index');
 
 // 联系表单
-Route::get('contact', 'BlogController@showForm');
-Route::post('contact', 'BlogController@sendContactInfo');
+Route::any('/contact', 'BlogController@sendContactInfo');

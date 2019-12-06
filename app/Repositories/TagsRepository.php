@@ -9,13 +9,14 @@ use App\Services\Helper;
  *
  * 所有需要从数据库里获取的数据都通过这一层出来
  *
- * @author: hlt <541139655@qq.com>
+ * @author: hlt <1013488674@qq.com>
  * @version: 1.0
  * @date: 2019/12/5
  */
+//这里负责对数据库的数据提取
 class TagsRepository extends BaseRepository
 {
-    //这里负责对数据库的数据提取
+
     protected $tags;
 
     public function __construct()

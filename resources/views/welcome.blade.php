@@ -35,8 +35,6 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
-        {{--    @include('admin.partials.errors')
-            @include('admin.partials.success')--}}
             <p>
                 想与我联系？填写下面的表单给我发消息，我会尽快给你回复！
             </p>
