@@ -2,7 +2,9 @@
 namespace App\Repositories;
 
 use App\Models\Tags;
+use App\Models\Users;
 use App\Services\Helper;
+use App\User;
 
 /**
  * 测试数据仓库
@@ -23,19 +25,39 @@ class TagsRepository extends BaseRepository
     {
 
         $this->tags = new Tags();
+        $this->user = new User();
     }
 
-    /**
-     * 获取tags模型的列表
-     * @param mixed $where 查询条件
-     * @param mixed $order 排序
-     * @return array
-     */
-    public function getTag($where=null, $order=null)
+    //获取页面信息数据
+    public function getTag()
     {
 
         $list = collect($this->tags->get())->toArray();
+
+        if (empty($list)){
+            $this->tags->insert([
+                [
+                    'tag' => "humanyr",
+                    'title' => "humanyr",
+                    'subtitle' => "humanyr",
+                    'page_image' => "humanyr",
+                    'meta_description' => "humanyr",
+                    'layout' => "humanyr",
+                    'reverse_direction' => 1,
+                ]
+            ]);
+            $list = collect($this->tags->get())->toArray();
+        }
         return $list;
+    }
+
+    //注册会员
+    public function memberRegister($data)
+    {
+        $ins_res = $this->tags->insert($data);
+        var_dump($ins_res);
+        die;
+
     }
 
 

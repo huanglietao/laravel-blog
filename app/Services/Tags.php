@@ -9,7 +9,6 @@ use App\Repositories\TagsRepository;
 
 class Tags
 {
-    //这里只负责数据的逻辑处理
     protected $re_tags = null;
 
     public function __construct()
@@ -18,14 +17,21 @@ class Tags
         $this->re_tags = $re_tags;
     }
 
+    //获取页面信息
     public function getTag()
     {
 
         //do something
-
         $data = $this->re_tags->getTag();
 
         $re_data = $data[0];
         return $re_data;
+    }
+
+    //注册会员
+    public function memberRegister($data)
+    {
+        $res = $this->re_tags->memberRegister($data);
+        return $res;
     }
 }

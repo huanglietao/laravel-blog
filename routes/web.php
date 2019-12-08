@@ -11,6 +11,7 @@
 |
 */
 
+
 Route::get('/', 'BlogController@index');
 
 // 联系表单

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,27 +19,17 @@
 </head>
 
 <body>
-<header class="masthead" style="background-image: url('contact-bg.jpg ')">
-    <div class="overlay"></div>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-md-10 mx-auto">
-                <div class="page-heading">
-                    <h1>联系我们</h1>
-                    <span class="subheading">你有问题？我有答案。</span>
-                </div>
-            </div>
-        </div>
-    </div>
+<header class="masthead">
+
 </header>
 
-<div class="container">
-    <div class="row">
+<div class="container" >
+    <div class="row" style="margin-top: 100px">
         <div class="col-lg-8 col-md-10 mx-auto">
-            <p>
-                想与我联系？填写下面的表单给我发消息，我会尽快给你回复！
-            </p>
-            <form name="sentMessage" action="/contact" method="post" id="contactForm" novalidate>
+            <h3>
+                注册会员
+            </h3>
+            <form name="sentMessage" action="/contact" method="post" id="contactForm">
                 <input type="hidden" name="_token" value="{!! csrf_token() !!}">
                 <div class="control-group">
                     <div class="form-group floating-label-form-group controls">
@@ -78,6 +69,6 @@
     </div>
 </div>
 
-
+<script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>

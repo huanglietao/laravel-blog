@@ -10,13 +10,13 @@ use Illuminate\Database\Eloquent\Model;
  * @version: 1.0
  * @date: 2019/8/1
  */
-class Tags extends Model
+class Users extends Model
 {
     //这里只负责定义表
-    protected $table = 'tags';
+    protected $table = 'users';
 
     protected $fillable = [
-        'tag', 'title', 'subtitle', 'page_image', 'meta_description','layout', 'reverse_direction'
+        'name', 'email', 'description', 'password', 'phone'
     ];
 
 }
