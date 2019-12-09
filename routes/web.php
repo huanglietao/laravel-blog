@@ -15,4 +15,10 @@
 Route::get('/', 'BlogController@index');
 
 // 联系表单
-Route::any('/contact', 'BlogController@sendContactInfo');
+Route::any('/contact', 'BlogController@Register');
+
+//用户界面
+Route::get('/user/{user_id}', 'BlogController@user');
+
+//修改用户信息
+Route::post('/edit', 'BlogController@userEdit');
