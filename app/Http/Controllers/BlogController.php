@@ -8,6 +8,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\RegisterRequest;
 use App\Repositories\UsersRepository;
 use App\Services\UsersService;
 
@@ -28,10 +29,14 @@ class BlogController extends Controller
     }
 
     //注册会员
-    public function Register(Request $request)
+    public function Register(RegisterRequest $request)
     {
+        var_dump(111);
+        die;
+
 
         $post = $request->post();
+
 
         //注册会员
         $m_register = $this->se_user->memberRegister($post);
@@ -70,4 +75,11 @@ class BlogController extends Controller
             'url'      => "user/".$post['user_id'],
         ]);
     }
+
+    //
+    public function login(){
+        return view("login");
+    }
+
+    //登录验证
 }
