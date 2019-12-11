@@ -12,7 +12,10 @@
 */
 
 
-Route::get('/', 'BlogController@index');
+Route::get('/', 'LoginController@index');
+
+//注册
+Route::get('/register', 'BlogController@index');
 
 // 联系表单
 Route::any('/contact', 'BlogController@Register');
@@ -22,3 +25,8 @@ Route::get('/user/{user_id}', 'BlogController@user');
 
 //修改用户信息
 Route::post('/edit', 'BlogController@userEdit');
+
+//登录
+Route::post('/tologin', 'LoginController@login');
+
+

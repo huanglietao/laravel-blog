@@ -12,7 +12,6 @@ use App\Repositories\UsersRepository;
 
 class UsersService
 {
-    protected $re_tags = null;
 
     public function __construct()
     {
@@ -25,10 +24,30 @@ class UsersService
     {
         //去除会员数组中的token字段
         unset($data['_token']);
-        //添加会员
+        //判断密码是否一致
 
+        if($data['password']!=$data['repassword'])
+        {
+            $res['code'] = 0;
+            $res['msg'] = trans("register.Two passwords are inconsistent");
+            return $res;
+        }
+        //去除确认密码的字段
+        unset($data['repassword']);
+        //对密码进行加密
+        $data['password'] = $this->passMd5($data['password']);
+        $data['created_at'] = date('Y-m-d H:i:s',time());
+        $data['updated_at'] = date('Y-m-d H:i:s',time());
+        //插入数据库
         $res = $this->re_user->memberRegister($data);
-        return $res;
+        if ($res){
+            return $res;
+        }else{
+            $res['code'] = 0;
+            $res['msg'] = trans("register.Register has failed");
+            return $res;
+        }
+
     }
 
     //修改用户信息
@@ -43,5 +62,49 @@ class UsersService
         //修改会员信息
         $res = $this->re_user->updateUserInfo($user_id,$data);
         return $res;
+    }
+
+    //用户密码加密
+    public function passMd5($password)
+    {
+        $password = md5($password);
+        return $password;
+    }
+
+    //用户登录
+    public function login($data)
+    {
+        //获取用户数据
+        $userinfo =  $this->re_user->getUserInfo(['name' => $data['name']]);
+
+        if (!empty($userinfo)){
+
+            //验证密码
+            if ($this->passMd5($data['password'])!=$userinfo[0]['password']){
+                //密码错误
+                $res=[
+                    'code' => 0,
+                    'msg'  => trans("login.The Password was wrong"),
+                ];
+                return $res;
+            }
+            //验证通过
+            //将用户信息存入session
+            session(['user_info' => $userinfo[0]]);
+            //返回用户id
+            $res = [
+                'code'     => 1,
+                'user_id'  => $userinfo[0]['id'],
+                'msg'      => 'ok',
+            ];
+            return $res;
+        }else{
+            $res=[
+                'code' => 0,
+                'msg'  => trans("login.The Password was wrong"),
+            ];
+            return $res;
+        }
+
     }
 }

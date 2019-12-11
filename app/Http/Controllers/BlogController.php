@@ -25,25 +25,22 @@ class BlogController extends Controller
 
     public function index(Request $request)
     {
+
         return view("register");
     }
 
     //注册会员
     public function Register(RegisterRequest $request)
     {
-        var_dump(111);
-        die;
-
-
         $post = $request->post();
 
 
         //注册会员
         $m_register = $this->se_user->memberRegister($post);
 
-        if (!$m_register) {
-            echo "注册会员失败，请重新注册";
-        } else {
+        if (isset($m_register['code'])&&$m_register['code']==0) {
+            return back()->withErrors($m_register['msg']);
+        } else{
             return redirect('/user/'.$m_register);
         }
     }
@@ -53,8 +50,11 @@ class BlogController extends Controller
     {
         $user_id = $request->route('user_id');
 
+        $where = [
+            'id' => $user_id,
+        ];
         //获取该用户的信息
-        $user_info = $this->re_user->getUserInfo($user_id);
+        $user_info = $this->re_user->getUserInfo($where);
 
         return view("user", [
             'user_info' => $user_info,
@@ -76,10 +76,6 @@ class BlogController extends Controller
         ]);
     }
 
-    //
-    public function login(){
-        return view("login");
-    }
 
     //登录验证
 }

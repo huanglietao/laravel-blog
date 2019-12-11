@@ -32,10 +32,10 @@ class UsersRepository extends BaseRepository
     }
 
     //获取会员信息
-    public function getUserInfo($user_id)
+    public function getUserInfo($where=null, $order=null)
     {
         //获取会员信息
-        $user_info = collect($this->user->where(['id'=>$user_id])->get())->toArray();
+        $user_info = collect($this->user->where($where)->get())->toArray();
 
         return $user_info;
     }

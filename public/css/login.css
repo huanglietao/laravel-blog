@@ -1,0 +1,11 @@
+.row{
+    margin-top: 100px;
+}
+.footer-but{
+    position: relative;
+}
+.to-register{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}

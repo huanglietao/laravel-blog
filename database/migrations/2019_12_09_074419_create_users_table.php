@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('phone');
             $table->timestamps();
         });
+
     }
 
     /**

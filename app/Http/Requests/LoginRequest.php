@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class RegisterRequest extends FormRequest
+class LoginRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,9 +25,8 @@ class RegisterRequest extends FormRequest
     {
         return [
             //
-            'name'       => 'required|unique:users',
-            'password'   => 'required',
-            'repassword' => 'required',
+            'name'      =>  'required',
+            'password'  =>  'required',
         ];
     }
 
@@ -39,10 +38,8 @@ class RegisterRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required'        => '请填写姓名',
-            'password.required'    => '请填写密码',
-            'repassword.required'  => '请确认密码',
-            'name.unique'          => '该账号已存在',
+            'name.required'      => '请输入账号',
+            'password.required'  => '请输入密码',
         ];
     }
 }

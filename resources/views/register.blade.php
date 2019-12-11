@@ -14,6 +14,9 @@
 
     {{-- Styles --}}
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
+    <script src="{{ asset('js/register.js') }}"></script>
     @yield('styles')
 </head>
 
@@ -23,8 +26,12 @@
 </header>
 
 <div class="container" >
+
+
     <div class="row" style="margin-top: 100px">
         <div class="col-lg-8 col-md-10 mx-auto">
+            @include('partials.errors')
+            @include('partials.success')
             <h3>
                 注册会员
             </h3>
@@ -32,32 +39,27 @@
                 <input type="hidden" name="_token" value="{!! csrf_token() !!}">
                 <div class="control-group">
                     <div class="form-group floating-label-form-group controls">
-                        <label>姓名</label>
-                        <input type="text" name="name" class="form-control" placeholder="填写你的名字" id="name" value="" required>
-                        <p class="help-block text-danger"></p>
-                    </div>
-                </div>
-                <div class="control-group">
-                    <div class="form-group floating-label-form-group controls">
-                        <label>邮箱</label>
-                        <input type="email" name="email" class="form-control" placeholder="填写你的邮箱" id="email" value="" required>
+                        <label>账号</label>
+                        <input type="text" name="name" class="form-control" placeholder="填写你的账号" id="name" value="" required>
                         <p class="help-block text-danger"></p>
                     </div>
                 </div>
                 <div class="control-group">
                     <div class="form-group col-xs-12 floating-label-form-group controls">
-                        <label>手机</label>
-                        <input type="tel" name="phone" class="form-control" placeholder="填写你的手机号" id="phone" value="" required>
+                        <label>密码</label>
+                        <input type="password" name="password" class="form-control" placeholder="请填写您的密码" id="password"  value="" required>
                         <p class="help-block text-danger"></p>
                     </div>
                 </div>
+
                 <div class="control-group">
-                    <div class="form-group floating-label-form-group controls">
-                        <label>消息</label>
-                        <textarea rows="5" name="message" class="form-control" placeholder="填写你想发送的消息" id="message" value="" required></textarea>
+                    <div class="form-group col-xs-12 floating-label-form-group controls">
+                        <label>确认密码</label>
+                        <input type="password" name="repassword" class="form-control" placeholder="请填写您的密码"  id="repassword" value="" required>
                         <p class="help-block text-danger"></p>
                     </div>
                 </div>
+
                 <br>
                 <div id="success"></div>
                 <div class="form-group">
@@ -68,6 +70,6 @@
     </div>
 </div>
 
-<script src="{{ asset('js/app.js') }}"></script>
+
 </body>
 </html>
