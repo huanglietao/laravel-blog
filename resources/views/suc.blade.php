@@ -10,7 +10,13 @@
     <div class="row" style="margin-top: 100px">
         <div class="col-lg-8 col-md-10 mx-auto">
             <h3 style="text-align: center">
-                {{ $message }},将在<span class="loginTime" style="color: red">{{ $jumpTime }}</span>秒后跳转至<a href="/user/{{ $url }}" style="color: red">个人信息</a>页面
+                {{ $message }},将在<span class="loginTime" style="color: red">{{ $jumpTime }}</span>秒后跳转至<a href="/user/{{ $url }}" style="color: red">
+                    @if(isset($jumpText))
+                        {{$jumpText}}
+                     @else
+                        首页
+                        @endif
+                </a>页面
 
             </h3>
         </div>

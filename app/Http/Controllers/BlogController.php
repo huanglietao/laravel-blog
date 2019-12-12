@@ -41,40 +41,15 @@ class BlogController extends Controller
         if (isset($m_register['code'])&&$m_register['code']==0) {
             return back()->withErrors($m_register['msg']);
         } else{
-            return redirect('/user/'.$m_register);
+            return view('suc',[
+                'message'  => "注册成功",
+                'jumpTime' => "3",
+                'url'      => "/",
+            ]);
         }
     }
 
-    //会员信息页面
-    public function user(Request $request)
-    {
-        $user_id = $request->route('user_id');
 
-        $where = [
-            'id' => $user_id,
-        ];
-        //获取该用户的信息
-        $user_info = $this->re_user->getUserInfo($where);
-
-        return view("user", [
-            'user_info' => $user_info,
-        ]);
-    }
-
-    //修改用户信息
-    public function userEdit(Request $request)
-    {
-        $post = $request->post();
-
-        //修改用户信息
-        $this->se_user->updateUserInfo($post);
-
-        return view('suc',[
-            'message'  => "修改成功",
-            'jumpTime' => "3",
-            'url'      => "user/".$post['user_id'],
-        ]);
-    }
 
 
     //登录验证

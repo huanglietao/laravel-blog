@@ -21,10 +21,19 @@ Route::get('/register', 'BlogController@index');
 Route::any('/contact', 'BlogController@Register');
 
 //用户界面
-Route::get('/user/{user_id}', 'BlogController@user');
+Route::any('/user', 'UserController@index');
+
+//获取用户信息
+Route::any('/user/getChild', 'UserController@getChild');
+
+//用户信息界面
+Route::get('/detail/{user_id}', 'UserController@detail');
 
 //修改用户信息
-Route::post('/edit', 'BlogController@userEdit');
+Route::post('/edit', 'UserController@userEdit');
+
+//删除用户信息
+Route::post('/delUser', 'UserController@userDel');
 
 //登录
 Route::post('/tologin', 'LoginController@login');

@@ -49,6 +49,26 @@ class UsersRepository extends BaseRepository
         return $user_info;
     }
 
+    //获取下级会员信息
+    public function getChild($where,$get)
+    {
+        //计算页数限制
+        $offset = $get['page']-1*$get['limit'];
+
+        $user_info = collect($this->user->where($where)->limit($offset,$get['limit'])->get())->toArray();
+
+        return $user_info;
+
+    }
+
+    //删除会员信息
+    public function delUser($id)
+    {
+        $this->user->where(['id' => $id])->delete();
+    }
+
+
+
 
 
 

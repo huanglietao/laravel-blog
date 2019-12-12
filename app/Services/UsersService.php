@@ -7,6 +7,7 @@ namespace App\Services;
  */
 
 use App\Repositories\UsersRepository;
+use Illuminate\Http\Request;
 
 //这里负责业务逻辑处理
 
@@ -107,4 +108,41 @@ class UsersService
         }
 
     }
+
+
+    //是否登录判断
+    public function isLogin()
+    {
+        $is_login = session('user_info');
+
+        if ($is_login){
+            //已登录
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    //获取用户下级会员信息
+    public function getChild($get)
+    {
+        $where = [];
+        if (isset($get['search'])&&$get['search']['name'])
+        {
+            $where['name'] = $get['search']['name'];
+        }
+        //获取当前会员
+        $user_arr = session('user_info');
+
+        $user_id = $user_arr['id'];
+
+        $where['pid'] = $user_id;
+
+        //获取下级会员信息
+        $user_info = $this->re_user->getChild($where,$get);
+
+        return $user_info;
+
+    }
+
 }

@@ -31,9 +31,13 @@ class LoginController extends Controller
         if ($res['code']==0){
             return back()->withErrors($res['msg']);
         }else{
-            return redirect('/user/'.$res['user_id']);
+            return redirect('/user');
         }
+    }
 
+    //验证是否登录
+    public function islogin()
+    {
 
     }
 
