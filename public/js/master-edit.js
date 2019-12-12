@@ -39,8 +39,7 @@ layui.use('table', function(){
                             var index = parent.layer.getFrameIndex(window.name);
                             //关闭当前frame
                             parent.layer.close(index);
-                            //刷新页面
-                            parent.location.reload();
+
                         }, 2000);
                     }else{
                         layer.msg("修改失败,请重新尝试")

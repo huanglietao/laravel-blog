@@ -60,9 +60,27 @@ class UsersService
         //获取user_id
         $user_id = $data['user_id'];
         unset($data['user_id']);
+
+        //判断此时的用户名有没有重复
+        $old_user_info = $this->re_user->getUserInfo(['name' => $data['name']]);
+        if ($old_user_info){
+            if ($old_user_info[0]['id'] != $user_id){
+                $return = [
+                    'code' => 0,
+                    'msg'  => "该用户名已存在"
+                ];
+                return $return;
+            }
+        }
         //修改会员信息
-        $res = $this->re_user->updateUserInfo($user_id,$data);
-        return $res;
+        $this->re_user->updateUserInfo($user_id,$data);
+
+        $return = [
+            'code' => 1,
+            'msg'  => "ok"
+        ];
+        return $return;
+
     }
 
     //用户密码加密
@@ -144,5 +162,6 @@ class UsersService
         return $user_info;
 
     }
+
 
 }

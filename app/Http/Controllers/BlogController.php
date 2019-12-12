@@ -34,9 +34,11 @@ class BlogController extends Controller
     {
         $post = $request->post();
 
-
+        var_dump($post);
+        die;
         //注册会员
         $m_register = $this->se_user->memberRegister($post);
+
 
         if (isset($m_register['code'])&&$m_register['code']==0) {
             return back()->withErrors($m_register['msg']);

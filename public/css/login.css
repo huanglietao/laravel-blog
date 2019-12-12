@@ -9,3 +9,62 @@
     right: 0;
     bottom: 0;
 }
+.layui-table-view{
+    margin-top: 0 !important;
+}
+.main-div{
+    width: 80%;
+    margin-left:10%;
+    margin-right: 10%;
+    margin-top:50px;
+    display: flex;
+}
+.l-div{
+    width: 30%;
+    /*background: #e6e6e6;*/
+}
+
+.r-div{
+    width: 70%;
+}
+.user-add{
+    position: relative;
+    height: 26px;
+    padding: 5px;
+    line-height: 16px;
+    margin-right: 10px;
+    text-align: center;
+    color: #333;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+.layui-form-label{
+    word-break: keep-all;
+}
+
+.layui-form-label{
+    word-break: keep-all;
+}
+.info-d{
+    display: flex;
+}
+.now-user{
+    font-size: 16px;
+}
+.master-edit{
+    text-align: left;
+    padding: 20px;
+}
+.master-edit-btn{
+    padding: 20px 30px !important;
+    line-height: 3px !important;
+}
+
+.master-login-out{
+    background: #ec6666 !important;
+    padding: 20px 30px !important;
+    line-height: 3px !important;
+}
+
+/*
+#e6e6e6*/

@@ -9,8 +9,17 @@ layui.use('table', function(){
     //方法级渲染
     table.render({
         elem: '#LAY_table_user'
+        ,async: false
         ,url: 'user/getChild'
-        ,cols: [[
+        ,page: { //支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
+            layout: ['limit'] //自定义分页布局
+            //,curr: 5 //设定初始在第 5 页
+            , groups: 1 //只显示 1 个连续页码
+            , first: false //不显示首页
+            , last: false //不显示尾页
+        }
+
+            ,cols: [[
             {field:'id', title: 'ID',sort:true}
             ,{field:'name', title: '用户名'}
             ,{field:'message', title: '信息'}
@@ -19,8 +28,12 @@ layui.use('table', function(){
             ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:150}
         ]]
         ,id: 'testReload'
-        ,page: true
-        ,height: 310
+
+
+
+
+
+
     });
 
     var $ = layui.$, active = {
@@ -109,4 +122,34 @@ layui.use('table', function(){
         var type = $(this).data('type');
         active[type] ? active[type].call(this) : '';
     });
+
+    //修改当前会员的个人信息
+    $(".master-edit-btn").click(function () {
+        var id = $(this).attr("data-id");
+        layer.open({
+            type: 2,
+            title:"编辑",
+            content: ['/detail/'+id+"/1"], //这里content是一个URL，如果你不想让iframe出现滚动条，你还可以content: ['http://sentsin.com', 'no']
+            area: ['800px', '800px']
+        });
+    })
+
+    //添加下级会员
+    $(".user-add").click(function () {
+        layer.open({
+            type: 2,
+            title:"添加",
+            content: ['/addUser'], //这里content是一个URL，如果你不想让iframe出现滚动条，你还可以content: ['http://sentsin.com', 'no']
+            area: ['800px', '800px']
+        });
+    })
+
+    //退出登录
+    $(".master-login-out").click(function () {
+        layer.confirm('确定退出当前账号嘛', function(index){
+            window.location.href="/login_out"
+        });
+    })
+
+
 });

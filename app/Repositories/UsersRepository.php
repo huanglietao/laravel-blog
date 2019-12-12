@@ -53,9 +53,12 @@ class UsersRepository extends BaseRepository
     public function getChild($where,$get)
     {
         //计算页数限制
-        $offset = $get['page']-1*$get['limit'];
+        $offset = ($get['page']-1)*$get['limit'];
 
-        $user_info = collect($this->user->where($where)->limit($offset,$get['limit'])->get())->toArray();
+
+
+        $user_info = collect($this->user->where($where)->offset($offset)->limit($get['limit'])->get())->toArray();
+
 
         return $user_info;
 
